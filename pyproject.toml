@@ -1,0 +1,44 @@
+[tool.poetry]
+authors = ["rendrikson <rendrikson.soares@lccv.ufal.br>"]
+description = ""
+name = "fast-zero"
+readme = "README.md"
+version = "0.1.0"
+
+[tool.poetry.dependencies]
+fastapi = {extras = ["standard"], version = "^0.115.6"}
+python = "^3.12"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.4"
+pytest-cov = "^6.0.0"
+ruff = "^0.8.3"
+taskipy = "^1.14.1"
+
+[tool.ruff]
+extend-exclude = ['migrations']
+line-length = 79
+
+[tool.ruff.lint]
+preview = true
+select = ['I', 'F', 'E', 'W', 'PL', 'PT']
+
+[tool.ruff.format]
+preview = true
+quote-style = 'single'
+
+[tool.pytest.ini_options]
+addopts = '-p no:warnings'
+pythonpath = "."
+
+[tool.taskipy.tasks]
+format = 'ruff check . --fix; ruff format .'
+lint = 'ruff check .; ruff check . --diff'
+post_test = 'coverage html'
+pre_test = 'task lint'
+run = 'fastapi dev fast_zero/app.py'
+test = 'pytest -s -x --cov=fast_zero -vv'
+
+[build-system]
+build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core"]
