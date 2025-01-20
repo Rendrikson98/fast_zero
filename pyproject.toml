@@ -32,7 +32,7 @@ addopts = '-p no:warnings'
 pythonpath = "."
 
 [tool.taskipy.tasks]
-format = 'ruff check . --fix; ruff format .'
+format = 'ruff check . --fix ruff format .'
 lint = 'ruff check .; ruff check . --diff'
 post_test = 'coverage html'
 pre_test = 'task lint'
