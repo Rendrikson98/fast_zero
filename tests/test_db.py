@@ -13,11 +13,12 @@ def test_create_user(session, mock_db_time):
 
   user = session.scalar(select(User).where(User.username == 'alice'))
 
-  #asdict converte uma dataclasse para um dicionário
+  # asdict converte uma dataclasse para um dicionário
   assert asdict(user) == {
     'id': 1,
     'username': 'alice',
     'password': 'secret',
     'email': 'test@test',
     'created_at': time,
+    'updated_at': time,
   }
