@@ -8,6 +8,9 @@ version = "0.1.0"
 [tool.poetry.dependencies]
 fastapi = {extras = ["standard"], version = "^0.115.6"}
 python = "^3.12"
+sqlalchemy = "^2.0.37"
+pydantic-settings = "^2.7.1"
+alembic = "^1.14.1"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3.4"
